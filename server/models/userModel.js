@@ -17,24 +17,32 @@ const userSchema = new mongoose.Schema({
         trim: true,
         unique: true,
     },
-    heart_rate: {
-        type: Number
-    },
-    bloodpressure: {
-        type: String,
-    },
-    oxygen_level: {
-        type: Number,
-    },
-    sleep_quality: {
-        type: String,
-    },
-    temperature: {
-        type: Number,
-    },
-    stress_level: {
-        type: String,
-    },
+    health_data: [
+        {
+            heart_rate: {
+                type: Number,
+            },
+            bloodpressure: {
+                type: String,
+            },
+            oxygen_level: {
+                type: Number,
+            },
+            sleep_quality: {
+                type: String,
+            },
+            temperature: {
+                type: Number,
+            },
+            stress_level: {
+                type: String,
+            },
+            recorded_at: {
+                type: Date,
+                default: Date.now,
+            },
+        }
+    ],
 }, { timestamps: true });
 
 const User =  mongoose.model('User', userSchema);

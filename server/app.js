@@ -3,6 +3,7 @@ import express from 'express';
 import bodyParser from 'body-parser';
 import cors from 'cors';
 import connectDB from './config/db_connection.js';
+import addAll from './services/addAll.js';
 
 import userRoutes from './routes/userRoutes.js';
 
@@ -15,6 +16,7 @@ app.use(express.json());
 
 connectDB();
 app.use('/api', userRoutes);
+app.use('/add_all', addAll);
 
 
 
