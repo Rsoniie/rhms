@@ -6,6 +6,7 @@ import connectDB from './config/db_connection.js';
 import addAll from './services/addAll.js';
 
 import userRoutes from './routes/userRoutes.js';
+import parentRoutes from './routes/parentRoutes.js';
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -16,6 +17,7 @@ app.use(express.json());
 
 connectDB();
 app.use('/api', userRoutes);
+app.use('/p_api', parentRoutes);
 app.use('/add_all', addAll);
 
 
@@ -23,3 +25,11 @@ app.use('/add_all', addAll);
 app.listen(PORT, () => {
     console.log(`Server is running on http://localhost:${PORT}`);
 });
+
+
+
+
+
+
+
+

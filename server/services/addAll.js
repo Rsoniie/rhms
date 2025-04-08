@@ -21,3 +21,6 @@ const addAll = async (req, res) => {
     }
 }
 export default addAll;
+
+
+

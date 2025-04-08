@@ -43,6 +43,10 @@ const userSchema = new mongoose.Schema({
             },
         }
     ],
+    parent : {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Parent',
+    },
 }, { timestamps: true });
 
 const User =  mongoose.model('User', userSchema);
