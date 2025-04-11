@@ -62,10 +62,6 @@ const signupController = async (req, res) => {
   }
 };
 
-const alertController = (req, res) => {
-  const { alertType, message } = req.body;
-  res.status(200).json({ message: "Alert processed successfully" });
-};
 
 const patientsController = async (req, res) => {
   try {
@@ -122,7 +118,6 @@ const addUserController = async (req, res) => {
 export {
   loginController,
   signupController,
-  alertController,
   patientsController,
   addUserController,
 };

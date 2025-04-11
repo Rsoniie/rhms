@@ -37,6 +37,10 @@ const userSchema = new mongoose.Schema({
             stress_level: {
                 type: String,
             },
+            condition : {
+                type: String,
+                default: "Normal",
+            },
             recorded_at: {
                 type: Date,
                 default: Date.now,

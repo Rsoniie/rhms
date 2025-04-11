@@ -4,6 +4,7 @@ import bodyParser from 'body-parser';
 import cors from 'cors';
 import connectDB from './config/db_connection.js';
 import addAll from './services/addAll.js';
+// import alertHandler from './services/alertHandler.js';
 
 import userRoutes from './routes/userRoutes.js';
 import parentRoutes from './routes/parentRoutes.js';
@@ -15,10 +16,11 @@ app.use(bodyParser.json());
 app.use(cors());
 app.use(express.json());
 
-connectDB();
+await connectDB();
 app.use('/api', userRoutes);
 app.use('/p_api', parentRoutes);
 app.use('/add_all', addAll);
+// app.use('/alerts', alertHandler);
 
 
 
