@@ -10,15 +10,15 @@ const addAll = async (req, res) => {
     const updatedUsers = await Promise.all(
       users.map(async (user) => {
         const healthData = generateRandomHealthData();
-        console.log("Just before calling health check")
+        // console.log("Just before calling health check")
         const critical = evaluateHealth(healthData);
-        console.log("This is output from health_check function", critical)
+        // console.log("This is output from health_check function", critical)
 
         if (critical == "Critical") {
           const parent_id = user.parent;
           const parent = await Parent.findById(parent_id);
           const email = parent.email;
-          // sendMail(email);
+          sendMail(email);
         }
 
         healthData["condition"] = critical;
@@ -33,7 +33,7 @@ const addAll = async (req, res) => {
     );
     return res
       .status(200)
-      .json({ message: "All users updated successfully", updatedUsers });
+      .json({ message: "All users updated successfully"});
   } catch (error) {
     return res.status(500).json({ message: "Error updating users", error });
   }
