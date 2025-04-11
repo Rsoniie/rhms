@@ -1,5 +1,5 @@
 const Condition = () => {
-    return "Normal";
+    return "Critical";
 }
 
 export default Condition;
