@@ -1,6 +1,6 @@
 import nodemailer from 'nodemailer';
 
-async function sendMail(email) {
+async function sendMail(email, message) {
     try {
         const transporter = nodemailer.createTransport({
             service: 'gmail', 
@@ -14,7 +14,7 @@ async function sendMail(email) {
             from: `${process.env.EMAIL}`, 
             to: email,
             subject: 'Test Email',
-            text: 'This is a test email sent from RHMS.'
+            text: message
         };
 
         const info = await transporter.sendMail(mailOptions);

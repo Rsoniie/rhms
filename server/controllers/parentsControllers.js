@@ -2,6 +2,7 @@ import jwt from "jsonwebtoken";
 import bcrypt from "bcrypt";
 import Parent from "../models/parentModel.js";
 import User from "../models/userModel.js";
+import sendMail from "../utils/sendMail.js";
 
 const loginController = async (req, res) => {
   const { username, password } = req.body;
@@ -115,9 +116,29 @@ const addUserController = async (req, res) => {
   }
 };
 
+const sendNotification = async (req, res) => {
+
+  try {
+    const email = req.params.email;
+    const {message} = req.body.message;
+
+    if (!email || !message) { 
+      return res.status(400).json({ message: "Email and message are required" });
+    }
+    sendMail(email, message);
+    return res.status(200).json({ message: "Notification sent successfully" });
+    } catch (error) {
+      return res
+        .status(500)
+        .json({ message: "Failed to send notification", error: error.message });
+    };
+  }
+
+
 export {
   loginController,
   signupController,
   patientsController,
   addUserController,
+  sendNotification
 };
