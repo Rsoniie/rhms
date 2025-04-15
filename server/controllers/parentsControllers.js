@@ -3,6 +3,7 @@ import bcrypt from "bcrypt";
 import Parent from "../models/parentModel.js";
 import User from "../models/userModel.js";
 import sendMail from "../utils/sendMail.js";
+import suggestionAi from "../services/getSuggestions.js";
 
 const loginController = async (req, res) => {
   const { username, password } = req.body;
@@ -62,7 +63,6 @@ const signupController = async (req, res) => {
       .json({ message: "Internal server error", error: error.message });
   }
 };
-
 
 const patientsController = async (req, res) => {
   try {
@@ -132,7 +132,31 @@ const sendNotification = async (req, res) => {
         .status(500)
         .json({ message: "Failed to send notification", error: error.message });
     };
+};
+
+const generateSuggestion = async(req, res) => {
+try {
+
+  const {health_data} = req.body;
+  if (!health_data) {
+    return res.status(400).json({ message: "Health data is required" });
   }
+  console.log("This is health data", health_data);
+  const health_parameters = JSON.stringify(health_data);
+  const prompt = `Based on the following health data: ${health_parameters}, please provide a suggestion. Very brief not more than 50 characters`;
+  const suggestions = await suggestionAi(prompt);
+
+
+  return res.status(200).json({ message: "Suggestion generated successfully", suggestions });
+
+  
+} catch (error) {
+  return res
+    .status(500)
+    .json({ message: "Failed to generate suggestion", error: error.message });
+  
+}
+};
 
 
 export {
@@ -140,5 +164,6 @@ export {
   signupController,
   patientsController,
   addUserController,
-  sendNotification
+  sendNotification,
+  generateSuggestion
 };
