@@ -20,7 +20,6 @@ await connectDB();
 app.use('/api', userRoutes);
 app.use('/p_api', parentRoutes);
 app.use('/add_all', addAll);
-// app.use('/alerts', alertHandler);
 
 
 
