@@ -81,7 +81,7 @@ const userSchema = new mongoose.Schema({
             heart_rate: {
                 type: Number,
             },
-            blood_pressure: {  // fixed naming to match function
+            blood_pressure: { 
                 type: String,
             },
             oxygen_level: {
@@ -93,16 +93,16 @@ const userSchema = new mongoose.Schema({
             temperature: {
                 type: Number,
             },
-            stress_level: {  // changed from String → Number
+            stress_level: {  
                 type: Number,
             },
-            total_daily_steps: {  // added field
+            total_daily_steps: {
                 type: Number,
             },
-            active_minutes: {  // added field
+            active_minutes: {  
                 type: Number,
             },
-            calories_burnt: {  // added field
+            calories_burnt: { 
                 type: Number,
             },
             condition: {
